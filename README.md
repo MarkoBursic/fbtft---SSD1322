@@ -13,11 +13,14 @@ SSD1322 driver for fbtft
         help</br>
           Framebuffer support for SSD1322</br>
 3. Add "obj-$(CONFIG_FB_TFT_SSD1322)     += fb_ssd1322.o" to "fbtft/Makefile"
-4. Add files to git : 
-     "git add /..../drivers/staging/fbtft/fb_ssd1322.c"
-     "git add /..../drivers/staging/fbtft/Makefife"
-     "git add /..../drivers/staging/fbtft/Kconfig"
-5. "git commit -s -v"
+4. Add files to git : </br>
+     "git add /..../drivers/staging/fbtft/fb_ssd1322.c"</br>
+     "git add /..../drivers/staging/fbtft/Makefife"</br>
+     "git add /..../drivers/staging/fbtft/Kconfig"</br>
+5. git config -email
+5. "git commit -s -v"</br>
+remove comment line # o those three files
+
 6. "git format-patch -1 HEAD"
 7. copy patch to userpatch directory (valid for Armbian), for example /userpatches/kernel/rockchip64-current
 4. Enable the specific driver to be compiled, mark as M</br>
