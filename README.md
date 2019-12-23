@@ -1,7 +1,8 @@
 # fbtft---SSD1322
 SSD1322 driver for fbtft
 Generation of .patch for the linux kernel -> device drivers -> staging -> fbtft
- Not Tested
+
+Not Tested
  
 1. Copy this file to "/linux-mainline/linux-5.4.y/drivers/staging/fbtft"
      "cd /.../linux-mainline/linux-5.4.y/drivers/staging/fbtft"
