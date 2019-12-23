@@ -5,7 +5,7 @@ SSD1322 driver for fbtft
  
 1. Copy this file to "/linux-mainline/linux-5.4.y/drivers/staging/fbtft"
      "cd /.../linux-mainline/linux-5.4.y/drivers/staging/fbtft"
-     "wget 
+     "wget https://raw.githubusercontent.com/MarkoBursic/fbtft---SSD1322/master/fb_ssd1322.c"
 2. Add following text to "fbtft/Kconfig"</br>
       config FB_TFT_SSD1322</br>
         tristate "FB driver for the SSD1322 OLED Controller"</br>
