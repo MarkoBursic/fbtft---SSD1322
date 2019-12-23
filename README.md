@@ -17,9 +17,12 @@ SSD1322 driver for fbtft
      "git add /..../drivers/staging/fbtft/fb_ssd1322.c"</br>
      "git add /..../drivers/staging/fbtft/Makefife"</br>
      "git add /..../drivers/staging/fbtft/Kconfig"</br>
-5. git config -email
+5. </br>
+  git config --global user.email "you@example.com"</br>
+        OR</br>
+  git config --global user.name "Your Name"</br>
 5. "git commit -s -v"</br>
-remove comment line # o those three files
+remove comment line # o those three files, save and exit
 
 6. "git format-patch -1 HEAD"
 7. copy patch to userpatch directory (valid for Armbian), for example /userpatches/kernel/rockchip64-current
