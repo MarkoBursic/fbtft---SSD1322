@@ -2,8 +2,7 @@
 #include <linux/kernel.h>
 #include <linux/device.h>
 #include <linux/init.h>
-#include <linux/gpio.h>
-#include <linux/spi/spi.h>
+#include <linux/gpio/consumer.h>
 #include <linux/delay.h>
 
 #include "fbtft.h"
@@ -19,21 +18,47 @@ static int init_display(struct fbtft_par *par)
 {
 	par->fbtftops.reset(par);
 
-	write_reg(par, 0xFD, 0x12);
+	gpio_set_value(par->gpio.cs, 0);
+	
+	write_reg(par, 0xFD);
+	write_reg(par, 0x12);
 	write_reg(par, 0xAE);
-	write_reg(par, 0xB3, 0xF3);
-	write_reg(par, 0xCA, 0x3F);
-	write_reg(par, 0xA2, 0x00);
-	write_reg(par, 0xA1, 0x00);
-	write_reg(par, 0xA0, 0x14, 0x11);
-	write_reg(par, 0xAB, 0x01);
-	write_reg(par, 0xB4, 0xA0, 0xFD);
-	write_reg(par, 0xC1, 0xFF);
-	write_reg(par, 0xC7, 0x0F);
-	write_reg(par, 0xB1, 0xF0);
-	write_reg(par, 0xD1, 0x82, 0x20);
-	write_reg(par, 0xBB, 0x0D);
-	write_reg(par, 0xBE, 0x00);
+	write_reg(par, 0xB3);
+	write_reg(par, 0xF3);
+	write_reg(par, 0xCA);
+	write_reg(par, 0x3F);
+	write_reg(par, 0xA2);
+	write_reg(par, 0x00);
+	write_reg(par, 0xA1);
+	write_reg(par, 0x00);
+	write_reg(par, 0xA0);
+	write_reg(par, 0x14);
+	write_reg(par, 0x11);
+	write_reg(par, 0xAB);
+	write_reg(par, 0x01);
+	write_reg(par, 0xB4);
+	write_reg(par, 0xA0);
+	write_reg(par, 0xFD);
+	
+	write_reg(par, 0xC1);
+	write_reg(par, 0xFF);
+	
+	write_reg(par, 0xC7);
+	write_reg(par, 0x0F);
+	
+	write_reg(par, 0xB1);
+	write_reg(par, 0xF0);
+	
+	write_reg(par, 0xD1);
+	write_reg(par, 0x82);
+	write_reg(par, 0x20);
+	
+	write_reg(par, 0xBB);
+	write_reg(par, 0x0D);
+	
+	write_reg(par, 0xBE);
+	write_reg(par, 0x00);
+	
 	write_reg(par, 0xA6);
 	write_reg(par, 0xAF);
 
