@@ -22,20 +22,28 @@ static int init_display(struct fbtft_par *par)
 	
 	write_reg(par, 0xFD);
 	write_reg(par, 0x12);
+	
 	write_reg(par, 0xAE);
+	
 	write_reg(par, 0xB3);
 	write_reg(par, 0xF3);
+	
 	write_reg(par, 0xCA);
 	write_reg(par, 0x3F);
+	
 	write_reg(par, 0xA2);
 	write_reg(par, 0x00);
+	
 	write_reg(par, 0xA1);
 	write_reg(par, 0x00);
+	
 	write_reg(par, 0xA0);
 	write_reg(par, 0x14);
 	write_reg(par, 0x11);
+	
 	write_reg(par, 0xAB);
 	write_reg(par, 0x01);
+	
 	write_reg(par, 0xB4);
 	write_reg(par, 0xA0);
 	write_reg(par, 0xFD);
@@ -60,6 +68,7 @@ static int init_display(struct fbtft_par *par)
 	write_reg(par, 0x00);
 	
 	write_reg(par, 0xA6);
+	
 	write_reg(par, 0xAF);
 
 	return 0;
@@ -195,5 +204,5 @@ MODULE_ALIAS("spi:ssd1322");
 MODULE_ALIAS("platform:ssd1322");
 
 MODULE_DESCRIPTION("SSD1322 OLED Driver");
-MODULE_AUTHOR("Peter Shen");
+MODULE_AUTHOR("Marko Bursic");
 MODULE_LICENSE("GPL");
