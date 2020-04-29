@@ -7,7 +7,7 @@
 
 #include "fbtft.h"
 
-#define DRVNAME     "fb_ssd1322"
+#define DRVNAME     "fb_ssd1322_2"
 #define WIDTH       256
 #define HEIGHT      64
 #define GAMMA_NUM   1
@@ -160,13 +160,13 @@ static struct fbtft_display display = {
 	},
 };
 
-FBTFT_REGISTER_DRIVER(DRVNAME, "solomon,ssd1322", &display);
+FBTFT_REGISTER_DRIVER(DRVNAME, "solomon,ssd1322_2", &display);
 
 MODULE_ALIAS("spi:" DRVNAME);
 MODULE_ALIAS("platform:" DRVNAME);
-MODULE_ALIAS("spi:ssd1322");
-MODULE_ALIAS("platform:ssd1322");
+MODULE_ALIAS("spi:ssd1322_2");
+MODULE_ALIAS("platform:ssd1322_2");
 
-MODULE_DESCRIPTION("SSD1322 OLED Driver");
+MODULE_DESCRIPTION("SSD1322_2 OLED Driver");
 MODULE_AUTHOR("Marko Bursic");
 MODULE_LICENSE("GPL");
