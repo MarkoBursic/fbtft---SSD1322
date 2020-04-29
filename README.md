@@ -37,4 +37,4 @@ remove comment line # o those three files, save and exit
 12. use fbtest to test OLED
 
 Alternative:
-use .patch file
+use .patch file: wget wget https://raw.githubusercontent.com/MarkoBursic/fbtft---SSD1322/master/0001-Signed-off-by-root-marko.bursic73-gmail.com.patch
