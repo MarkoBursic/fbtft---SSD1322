@@ -1,6 +1,11 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * FB driver for the SSD1322 OLED Controller
+ */
+
+
 #include <linux/module.h>
 #include <linux/kernel.h>
-#include <linux/device.h>
 #include <linux/init.h>
 #include <linux/gpio/consumer.h>
 #include <linux/delay.h>
@@ -18,57 +23,57 @@ static int init_display(struct fbtft_par *par)
 {
 	par->fbtftops.reset(par);
 
-	gpio_set_value(par->gpio.cs, 0);
-	
+	gpiod_set_value(par->gpio.cs, 0);
+
 	write_reg(par, 0xFD);
 	write_reg(par, 0x12);
-	
+
 	write_reg(par, 0xAE);
-	
+
 	write_reg(par, 0xB3);
 	write_reg(par, 0xF3);
-	
+
 	write_reg(par, 0xCA);
 	write_reg(par, 0x3F);
-	
+
 	write_reg(par, 0xA2);
 	write_reg(par, 0x00);
-	
+
 	write_reg(par, 0xA1);
 	write_reg(par, 0x00);
-	
+
 	write_reg(par, 0xA0);
 	write_reg(par, 0x14);
 	write_reg(par, 0x11);
-	
+
 	write_reg(par, 0xAB);
 	write_reg(par, 0x01);
-	
+
 	write_reg(par, 0xB4);
 	write_reg(par, 0xA0);
 	write_reg(par, 0xFD);
-	
+
 	write_reg(par, 0xC1);
 	write_reg(par, 0xFF);
-	
+
 	write_reg(par, 0xC7);
 	write_reg(par, 0x0F);
-	
+
 	write_reg(par, 0xB1);
 	write_reg(par, 0xF0);
-	
+
 	write_reg(par, 0xD1);
 	write_reg(par, 0x82);
 	write_reg(par, 0x20);
-	
+
 	write_reg(par, 0xBB);
 	write_reg(par, 0x0D);
-	
+
 	write_reg(par, 0xBE);
 	write_reg(par, 0x00);
-	
+
 	write_reg(par, 0xA6);
-	
+
 	write_reg(par, 0xAF);
 
 	return 0;
@@ -154,15 +159,15 @@ static int write_vmem(struct fbtft_par *par, size_t offset, size_t len)
 	int ret = 0;
 
 	/* Set data line beforehand */
-	gpio_set_value(par->gpio.dc, 1);
+	gpiod_set_value(par->gpio.dc, 1);
 
 	/* convert offset to word index from byte index */
 	offset /= 2;
 	bl_width = par->info->var.xres;
 	bl_height = len / par->info->fix.line_length;
 
-	fbtft_par_dbg(DEBUG_WRITE_VMEM, par,
-		"%s(offset=0x%x bl_width=%d bl_height=%d)\n", __func__, offset, bl_width, bl_height);
+//	fbtft_par_dbg(DEBUG_WRITE_VMEM, par,
+//		"%s(offset=0x%x bl_width=%d bl_height=%d)\n", __func__, offset, bl_width, bl_height);
 
 	for (y = 0; y < bl_height; y++) {
 		for (x = 0; x < bl_width / 2; x++) {
