@@ -52,9 +52,9 @@ index 000000000..a462f540e
 +#include <linux/kernel.h>
 +#include <linux/device.h>
 +#include <linux/init.h>
-+#include <linux/gpio/consumer.h>
++#include <linux/gpio.h>
++#include <linux/spi/spi.h>
 +#include <linux/delay.h>
-+
 +
 +#include "fbtft.h"
 +
@@ -69,7 +69,7 @@ index 000000000..a462f540e
 +{
 +	par->fbtftops.reset(par);
 +
-+
++	gpio_set_value(par->gpio.cs, 0);
 +
 +	write_reg(par, 0xFD, 0x12);
 +	write_reg(par, 0xAE);
