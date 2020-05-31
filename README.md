@@ -2,7 +2,7 @@
 SSD1322 driver for fbtft
 Generation of .patch for the linux kernel -> device drivers -> staging -> fbtft
 
-Not Tested
+Tested with Armbian (Debian) Buster 10, Linux 5.4.38-rockchip64 on Rockpi 4B (RK3399 SoC)
  
 1. Copy this file to "/linux-mainline/linux-5.4.y/drivers/staging/fbtft"</br>
      "cd /.../linux-mainline/linux-5.4.y/drivers/staging/fbtft"</br>
@@ -37,4 +37,4 @@ remove comment line # o those three files, save and exit
 12. use fbtest to test OLED
 
 Alternative:
-use .patch file: wget wget https://raw.githubusercontent.com/MarkoBursic/fbtft---SSD1322/master/0001-Signed-off-by-root-marko.bursic73-gmail.com.patch
+use .patch file: wget https://raw.githubusercontent.com/MarkoBursic/fbtft---SSD1322/master/0001-Signed-off-by-root-marko.bursic73-gmail.com.patch
