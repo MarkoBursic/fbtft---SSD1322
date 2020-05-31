@@ -3,6 +3,7 @@ SSD1322 driver for fbtft
 Generation of .patch for the linux kernel -> device drivers -> staging -> fbtft
 
 Tested with Armbian (Debian) Buster 10, Linux 5.4.38-rockchip64 on Rockpi 4B (RK3399 SoC)
+Display: ER-OLED032-1  - BuyDisplay.com
  
 1. Copy this file to "/linux-mainline/linux-5.4.y/drivers/staging/fbtft"</br>
      "cd /.../linux-mainline/linux-5.4.y/drivers/staging/fbtft"</br>
