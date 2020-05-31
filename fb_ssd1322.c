@@ -23,25 +23,36 @@ static int init_display(struct fbtft_par *par)
 {
 	par->fbtftops.reset(par);
 
-	gpiod_set_value(par->gpio.cs, 0);
+	if (par->gpio.cs)
+		gpiod_set_value(par->gpio.cs, 0);
 
-	write_reg(par, 0xFD, 0x12);
-	write_reg(par, 0xAE);
-	write_reg(par, 0xB3, 0xF3);
-	write_reg(par, 0xCA, 0x3F);
-	write_reg(par, 0xA2, 0x00);
-	write_reg(par, 0xA1, 0x00);
-	write_reg(par, 0xA0, 0x14, 0x11);
-	write_reg(par, 0xAB, 0x01);
-	write_reg(par, 0xB4, 0xA0, 0xFD);
-	write_reg(par, 0xC1, 0xFF);
-	write_reg(par, 0xC7, 0x0F);
-	write_reg(par, 0xB1, 0xF0);
-	write_reg(par, 0xD1, 0x82, 0x20);
-	write_reg(par, 0xBB, 0x0D);
-	write_reg(par, 0xBE, 0x00);
-	write_reg(par, 0xA6);
-	write_reg(par, 0xAF);
+	write_reg(par, 0xFD, 0x12); 		/*SET COMMAND LOCK -> UNLOCK */
+	write_reg(par, 0xAE);				/*DISPLAY OFF*/
+	write_reg(par, 0xB3, 0x91);			/*DISPLAYDIVIDE CLOCKRATIO/OSCILLATOR FREQUENCY*/ 
+	write_reg(par, 0xCA, 0x3F);			/*multiplex ratio duty = 1/64*/
+	write_reg(par, 0xA2, 0x00);			/*set offset*/
+	write_reg(par, 0xA1, 0x00);			/*start line*/
+	switch (par->info->var.rotate){
+		case 0:
+			write_reg(par, 0xA0, 0x14, 0x11);	/*set remap*/
+			break;
+		case 180:
+			write_reg(par, 0xA0, 0x06, 0x11);	/*set remap*/
+			break;
+		default:
+			write_reg(par, 0xA0, 0x14, 0x11);
+	}
+	write_reg(par, 0xAB, 0x01);			/*funtion selection = Enable internal VDD regulator*/ 
+	write_reg(par, 0xB4, 0xA0, 0xFD);	/*Display Enhancement A = Enable external VSL, Enhanced low GS display quality */
+	write_reg(par, 0xC1, 0x80);			/*set contrast current */
+	write_reg(par, 0xC7, 0x0F);			/*master contrast current control*/ 
+	write_reg(par, 0xB1, 0xE2);			/*SET PHASE LENGTH*/
+	write_reg(par, 0xD1, 0x82, 0x20);	/* Display Enhancement B = default reset */ 
+	write_reg(par, 0xBB, 0x1F);			/*SET PRE-CHANGE VOLTAGE*/ 
+	write_reg(par, 0xB6, 0x08);			/*SET SECOND PRE-CHARGE PERIOD*/
+	write_reg(par, 0xBE, 0x07);			/* SET VCOMH */
+	write_reg(par, 0xA6);				/*normal display*/
+	write_reg(par, 0xAF);				/*display ON*/
 
 	return 0;
 }
@@ -93,7 +104,7 @@ static int set_gamma(struct fbtft_par *par, u32 *curves)
 	write_reg(par, 0xB8,
 	tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], tmp[6], tmp[7],
 	tmp[8], tmp[9], tmp[10], tmp[11], tmp[12], tmp[13], tmp[14]);
-
+	//write_reg(par, 0x00);
 	return 0;
 }
 
