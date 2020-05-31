@@ -5,6 +5,8 @@ Generation of .patch for the linux kernel -> device drivers -> staging -> fbtft
 Tested with Armbian (Debian) Buster 10, Linux 5.4.38-rockchip64 on Rockpi 4B (RK3399 SoC)
 Display: ER-OLED032-1  - BuyDisplay.com
  
+ METHOD 1 (Create a patch file);
+ 
 1. Copy this file to "/linux-mainline/linux-5.4.y/drivers/staging/fbtft"</br>
      "cd /.../linux-mainline/linux-5.4.y/drivers/staging/fbtft"</br>
      "wget https://raw.githubusercontent.com/MarkoBursic/fbtft---SSD1322/master/fb_ssd1322.c"</br>
@@ -33,9 +35,9 @@ remove comment line # o those three files, save and exit
 >>>Support for small TFT LCD display modules ---></br>
 >>>>FB driver for the SSD1322 OLED Controller</br>
 9. Compile the kernel and install modules after compiled.
-10. sudo modprobe fb_ssd1322
-11. sudo modprobe fbtft_device custom name=fb_ssd1322 width=256 height=64 speed=16000000 gpios=dc:23,reset:24
-12. use fbtest to test OLED
+10. Add to device tree overlay a panel and enable it
+11. use fbtest to test OLED
 
-Alternative:
+METHOD 2 (use a patch file)
+
 use .patch file: wget https://raw.githubusercontent.com/MarkoBursic/fbtft---SSD1322/master/0001-Signed-off-by-root-marko.bursic73-gmail.com.patch
